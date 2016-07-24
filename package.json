@@ -1,0 +1,46 @@
+{
+  "name": "react-scrollaware",
+  "version": "1.0.0",
+  "description": "A React HoC component for create scroll-aware components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bySabi/react-scrollaware.git"
+  },
+  "homepage": "https://github.com/bySabi/react-scrollaware.git",
+  "bugs": "https://github.com/bySabi/react-scrollaware/issues",
+  "keywords": [
+    "hoc",
+    "higher-order",
+    "react",
+    "react-hoc",
+    "component",
+    "react-component",
+    "scroll",
+    "scroll-aware"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build-npm": "rimraf lib && mkdirp lib && babel src/ -d lib/",
+    "lint": "eslint . --ext .js,.jsx",
+    "prepublish": "npm run build-npm"
+  },
+  "peerDependencies": {
+    "react": "15.x.x",
+    "react-dom": "15.x.x"
+  },
+  "devDependencies": {
+    "babel-cli": "6.x.x",
+    "babel-loader": "6.x.x",
+    "babel-preset-es2015": "6.x.x",
+    "babel-preset-react": "6.x.x",
+    "babel-preset-stage-2": "6.x.x",
+    "babel-plugin-transform-class-properties": "6.x.x",
+    "eslint": "3.x.x",
+    "eslint-setup-orgztion-services": "orgztion/eslint-setup-orgztion-services",
+    "cross-env": "*",
+    "rimraf": "*",
+    "mkdirp": "*"
+   },
+  "author": "bySabi Files",
+  "license": "ISC"
+}
