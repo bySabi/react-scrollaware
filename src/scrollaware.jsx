@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { findScrollableAncestor, getComponentPosition, getWindow } from './utils';
+import { findScrollableAncestor, getWindow } from './utils';
 
 /**
  * @param {function} Component

@@ -1,10 +1,3 @@
-export const POSITIONS = {
-  above: 'above',
-  inside: 'inside',
-  below: 'below',
-  invisible: 'invisible'
-};
-
 export function getWindow() {
   return typeof window !== 'undefined';
 }
@@ -58,32 +51,4 @@ export function getScrollableAncestorRect(scrollableAncestor) {
   }
   const contextBottom = contextScrollTop + contextHeight;
   return { contextBottom, contextScrollTop, contextHeight };
-}
-
-/**
- * @return {string} The current position of the component `Top` in relation to the
- *   visible portion of the scrollable parent. One of `POSITIONS.above`,
- *   `POSITIONS.below`, or `POSITIONS.inside`.
- */
-export function getComponentPosition(component, scrollableAncestor) {
-  const waypointTop = component.getBoundingClientRect().top;
-  const { contextBottom, contextScrollTop, contextHeight } = getScrollableAncestorRect(scrollableAncestor);
-
-  if (contextHeight === 0) {
-    return POSITIONS.invisible;
-  }
-
-  if (waypointTop >= contextScrollTop && waypointTop <= contextBottom) {
-    return POSITIONS.inside;
-  }
-
-  if (waypointTop > contextBottom) {
-    return POSITIONS.below;
-  }
-
-  if (waypointTop < contextScrollTop) {
-    return POSITIONS.above;
-  }
-
-  return POSITIONS.invisible;
 }
