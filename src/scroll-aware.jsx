@@ -70,19 +70,22 @@ export default function(Component) {
       // exist. Guarding against this prevents the following error:
       //
       //   Cannot read property 'removeEventListener' of undefined
-      this.scrollableAncestor && this.scrollableAncestor
-        .removeEventListener('scroll', this._handleScroll);
+      this.scrollableAncestor &&
+        this.scrollableAncestor.removeEventListener('scroll', this._handleScroll);
       window.removeEventListener('resize', this._handleScroll);
 
       // cancel throttle function if is posible
-      this.props.throttleHandler.cancel && this.props.throttleHandler.cancel.call(this);
+      this.props.throttleHandler.cancel &&
+        this.props.throttleHandler.cancel.call(this);
     }
 
     /**
      * @return {Object}
      */
     render() {
-      this.Component = React.createElement(Component, { ...this.props, scrollableAncestor: this.state.scrollableAncestor });
+      this.Component = React.createElement(Component, { ...this.props,
+        scrollableAncestor: this.state.scrollableAncestor
+      });
       return this.Component;
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "react-scrollaware",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A React HoC component for create scroll-aware components",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "scroll",
     "scroll-aware"
   ],
-  "main": "lib/index.js",
+  "main": "lib/scroll-aware.js",
   "scripts": {
     "build-npm": "rimraf lib && mkdirp lib && babel src/ -d lib/",
     "lint": "eslint . --ext .js,.jsx",
