@@ -38,7 +38,7 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
 
 * Component´s `_handleScroll` will fired wherever ocurr a `onScroll` event in the scrollable ancestor or get `resized`
 
-* Filtering scroll events relay on wrapped component. 
+* Filtering scroll events relay on wrapped component.
 
 
 ## Prop types
@@ -109,14 +109,18 @@ If your component isn't working the way you expect it to. Clone and modify the p
 
 ### Local development advice
 This package have `peerDependencies` on 'React' and 'React-DOM' modules. Don't install `react` or `react-dom` on local `react-scrollaware` if they had been previously installed on your app project. Many local `react` and `react-dom` package instances conflict between them. One way to solved is:
-- on `CurrentApp/node_modules/react` run `npm link`
-- on `react-scrollaware` local repository `npm link react`
-- Repeat steps for `react-dom` module
+```bash
+cd "current App project"/node_modules/react
+npm link
 
+cd react-scrollaware
+npm link react
+```
+Repeat steps for `react-dom`
 
 ## Example
 
-[react-scrolled](https://github.com/bySabi/react-scrolled) WIP project, is a library of scroll behaviours components and HoC.  
+[react-scrolled](https://github.com/bySabi/react-scrolled) WIP project, is a library of scroll behaviours components and HoC.
 
 
 ## Credits
