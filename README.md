@@ -38,7 +38,7 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
 
 * Component´s `_handleScroll` will fired wherever ocurr a `onScroll` event in the scrollable ancestor or get `resized`
 
-* Filtering scroll events relay on wrapped componet. 
+* Filtering scroll events relay on wrapped component. 
 
 
 ## Prop types
