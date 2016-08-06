@@ -49,7 +49,6 @@ export default function(Component) {
       window.addEventListener('resize', this._handleScroll);
 
       this.setState({ scrollableAncestor: this.scrollableAncestor });
-      this._handleScroll(null);
     }
 
     componentDidUpdate() {
