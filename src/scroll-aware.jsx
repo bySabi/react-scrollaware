@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { findScrollableAncestor, getWindow } from './utils';
+import warning from 'fbjs/lib/warning';
 
 /**
  * @param {function} Component
@@ -25,7 +26,7 @@ export default function(Component) {
     }
 
     _componentHandleScroll = (event) => {
-      if (!this.Component.type.prototype._handleScroll) throw new Error('No `_handleScroll` method found on returned Component instance');
+      warning(this.Component.type.prototype._handleScroll, '[scrollAware]: Returned Component instance does not have a _handleScroll method');
 
       this._componentHandleScroll = this.Component.type.prototype._handleScroll.bind(this.Component);
       this._componentHandleScroll(event);
