@@ -22,7 +22,9 @@
   "scripts": {
     "build-npm": "rimraf lib && mkdirp lib && babel src/ -d lib/",
     "lint": "eslint . --ext .js,.jsx",
-    "testonly": "echo \"Error: no test specified\" && exit 1",
+    "karma": "karma start",
+    "testonly:chrome": "npm run karma",
+    "testonly": "npm run testonly:chrome",
     "test": "npm run lint && npm run testonly",
     "prepublish": "npm run build-npm"
   },
@@ -38,6 +40,8 @@
     "babel-plugin-transform-class-properties": "6.x.x",
     "eslint": "3.x.x",
     "eslint-modules-standard-deviation": "1.x.x",
+    "karma": "1.x.x",
+    "carma-tap-webpack": "bySabi/carma-tap-webpack",
     "rimraf": "*",
     "mkdirp": "*"
    },

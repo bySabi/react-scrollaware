@@ -2,3 +2,7 @@
 .eslintrc.js
 CHANGELOG.md
 src
+karma.conf.js
+.babelrc
+spec
+.travis.yml

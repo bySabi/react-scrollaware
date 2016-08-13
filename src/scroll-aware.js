@@ -25,7 +25,7 @@ export default function(Component) {
     }
 
     _componentHandleScroll = (event) => {
-      if (!this.Component.type.prototype._handleScroll) throw new Error('No `_handleScroll` method found on the returned Component instance');
+      if (!this.Component.type.prototype._handleScroll) throw new Error('No `_handleScroll` method found on returned Component instance');
 
       this._componentHandleScroll = this.Component.type.prototype._handleScroll.bind(this.Component);
       this._componentHandleScroll(event);

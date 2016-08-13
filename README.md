@@ -1,8 +1,8 @@
-# React scroll-aware Higher-order Component
+# react-scrollaware (React Scroll-aware HoC)
 
 [![npm version](https://badge.fury.io/js/react-scrollaware.svg)](https://badge.fury.io/js/react-scrollaware)
 
-A React HoC component for create `scroll-aware` wrapped components. Works in all containers that can scroll, including the `window`
+A React Higher-order Component for create `scroll-aware` wrapped components. Works in all containers that can scroll, including the `window`
 
 > The intended purpouse of this component is abstract a well tested scroll event handler pattern and build complex scroll behaviours on top of it.
 
