@@ -46,6 +46,8 @@
     "eslint-modules-standard-deviation": "1.x.x",
     "lodash.throttle": "4.x.x",
     "karma": "1.x.x",
+    "karma-sourcemap-loader": "*",
+    "karma-webpack": "1.x.x",
     "carma-tap-webpack": "1.x.x",
     "webpack": "^2.1.0-beta",
     "testdouble": "1.x.x",
