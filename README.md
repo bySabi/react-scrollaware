@@ -5,7 +5,6 @@
 [![Build Status](https://travis-ci.org/bySabi/react-scrollaware.svg?branch=master)](https://travis-ci.org/bySabi/react-scrollaware)
 [![Known Vulnerabilities](https://snyk.io/test/github/bysabi/react-scrollaware/badge.svg)](https://snyk.io/test/github/bysabi/react-scrollaware)
 
-
 A React Higher-order Component for create `scroll-aware` wrapped components. Works in all containers that can scroll, including the `window`
 
 > The intended purpouse of this component is abstract a well tested scroll event handler pattern and build complex scroll behaviours on top of it.
@@ -21,12 +20,12 @@ npm install react-scrollaware --save
 ### Dependencies
 * User should provide its own `React` and `React-DOM` package
 * on `Node 4` and `npm 2` package [fbjs](https://www.npmjs.com/package/fbjs) should be installed too:
-    ```bash
-    npm install fbjs --save
-    ```
+```bash
+npm install fbjs --save
+```
 
 #### `fbjs` package
-[fbjs](https://www.npmjs.com/package/fbjs) is collection of utility libraries created by React Team. It include useful modules like `warning` and `invariant`
+[fbjs](https://www.npmjs.com/package/fbjs) is a collection of utility libraries created by React Team. It include useful modules like `warning` and `invariant`
 
 
 ## Usage
