@@ -71,7 +71,6 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
      * See the section on "Throttling" for details on how to use it.
      */
     throttleHandler: PropTypes.func,
-  },
 
     /**
      * react-scrollaware by default callback '_handleScroll' class method of wrapped
