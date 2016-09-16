@@ -96,7 +96,7 @@ test('<ScrolledTest>', t => {
         const explain = td.explain(console.error);
         t.equal(explain.callCount, 1);
         const error = explain.calls[0].args[0];
-        t.ok(error.includes('Warning: [scrollAware]'));
+        t.ok(!!~error.indexOf('Warning: [scrollAware]'));
         t.end();
       });
 
