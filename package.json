@@ -48,7 +48,7 @@
     "karma": "1.x.x",
     "karma-sourcemap-loader": "*",
     "karma-webpack": "1.x.x",
-    "carma-tap-webpack": "1.x.x",
+    "carma-tap-webpack": "bySabi/carma-tap-webpack",
     "webpack": "^2.1.0-beta",
     "testdouble": "1.x.x",
     "enzyme": "2.x.x",
