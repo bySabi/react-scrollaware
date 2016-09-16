@@ -1,6 +1,10 @@
 # react-scrollaware (React Scroll-aware HoC)
 
 [![npm version](https://badge.fury.io/js/react-scrollaware.svg)](https://badge.fury.io/js/react-scrollaware)
+[![npm downloads](https://img.shields.io/npm/dm/react-scrollaware.svg?style=flat-square)](https://www.npmjs.com/package/react-scrollaware)
+[![Build Status](https://travis-ci.org/bySabi/react-scrollaware.svg?branch=master)](https://travis-ci.org/bySabi/react-scrollaware)
+[![Known Vulnerabilities](https://snyk.io/test/github/bysabi/react-scrollaware/badge.svg)](https://snyk.io/test/github/bysabi/react-scrollaware)
+
 
 A React Higher-order Component for create `scroll-aware` wrapped components. Works in all containers that can scroll, including the `window`
 
@@ -13,6 +17,17 @@ A React Higher-order Component for create `scroll-aware` wrapped components. Wor
 ```bash
 npm install react-scrollaware --save
 ```
+
+### Dependencies
+* User should provide its own `React` and `React-DOM` package
+* on `Node 4` and `npm 2` package [fbjs](https://www.npmjs.com/package/fbjs) should be installed too:
+    ```bash
+    npm install fbjs --save
+    ```
+
+#### `fbjs` package
+[fbjs](https://www.npmjs.com/package/fbjs) is collection of utility libraries created by React Team. It include useful modules like `warning` and `invariant`
+
 
 ## Usage
 
@@ -49,7 +64,7 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
      * you do not want the immediate scrollable ancestor or `window` to be
      * the container.
      */
-    scrollableAncestor: PropTypes.any,
+    scrollableAncestor: PropTypes.any
 
     /**
      * The `throttleHandler` prop provides a function that throttle the internal
@@ -58,6 +73,15 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
      */
     throttleHandler: PropTypes.func,
   },
+
+    /**
+     * react-scrollaware by default callback '_handleScroll' class method of wrapped
+     * component wherever a 'scroll' or 'resize' event occur.
+     * The `handleScroll` prop provides a different class method name to
+     * wrapped component event handler.
+     */
+    handleScroll: PropTypes.string
+  }
 ```
 
 ## Containing elements and `scrollableAncestor`
@@ -67,6 +91,16 @@ If that algorithm doesn't work for your use case, then you might find the
 `scrollableAncestor` prop useful. It allows you to specify what the scrollable
 ancestor is. Pass a node as that prop, and the `react-scrollaware` will use the scroll
 position of *that* node, rather than its first scrollable ancestor.
+
+### Example Usage
+
+Sometimes, scroll-aware components that are deeply nested in the DOM tree may need to track the scroll position of the page as a whole. If you want to be sure that no other scrollable ancestor is used (since, once again, the first scrollable ancestor is what the library will use by default), then you can explicitly set the scrollableAncestor to be the window to ensure that no other element is used.
+
+This might look something like:
+
+```javascript
+<ScrolledMinimal scrollableAncestor={window} />
+```
 
 ## Throttling
 By default, `react-scrollaware` will trigger on every scroll event. In most cases, this
@@ -98,6 +132,29 @@ during the lifetime of a `react-scrollaware` (when is mounted).
 To prevent errors coming from the fact that the scroll handler can be called
 after the `react-scrollaware` is unmounted, it's a good idea to cancel the throttle
 function on unmount. If used throttle function have a `cancel` function, `react-scrollaware` will call it on component unmount.
+
+
+## handleScroll prop
+Example Usage
+```javascript
+// scrolled-min.jsx
+import React from 'react';
+import scrollAware from 'react-scrollaware';
+
+function ScrolledMinimal(props) {
+  return React.createElement(scrollAware(class ScrolledMinimal extends React.Component {
+    onScroll(event) {
+      console.log('scrolled: ', event);
+    }
+
+    render() {
+      return <span style={{fontSize: 0}} />;
+    }
+   }),
+   { ...props, handleScroll: 'onScroll' }
+  );
+}
+```
 
 ## Troubleshooting
 If your component isn't working the way you expect it to. Clone and modify the project locally.

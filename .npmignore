@@ -1,8 +1,10 @@
+CHANGELOG.md
+CONTRIBUTING.md
+src
+test
+karma.conf.js
+karma.test.conf.js
+.babelrc
 .eslintignore
 .eslintrc.js
-CHANGELOG.md
-src
-karma.conf.js
-.babelrc
-spec
 .travis.yml

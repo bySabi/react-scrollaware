@@ -1,5 +1,10 @@
 ## master (unreleased)
 
+# 1.3.0
+
+- add Test
+- improve Doc
+
 ## 1.1.0
 
 - Remove on mount _handleScroll call

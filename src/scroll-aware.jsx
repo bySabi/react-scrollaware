@@ -12,13 +12,15 @@ export default function(Component) {
   return class _scrollAware extends React.Component {
     static propTypes = {
       scrollableAncestor: PropTypes.any,
-      throttleHandler: PropTypes.func
+      throttleHandler: PropTypes.func,
+      handleScroll: PropTypes.string
     }
 
     static defaultProps = {
       throttleHandler(handler) {
         return handler;
-      }
+      },
+      handleScroll: '_handleScroll'
     }
 
     state = {
@@ -26,10 +28,12 @@ export default function(Component) {
     }
 
     _componentHandleScroll = (event) => {
-      warning(this.Component.type.prototype._handleScroll, '[scrollAware]: Returned Component instance does not have a _handleScroll method');
-
-      this._componentHandleScroll = this.Component.type.prototype._handleScroll.bind(this.Component);
-      this._componentHandleScroll(event);
+      if (this.Component.type.prototype[this.props.handleScroll]) {
+        this._componentHandleScroll = this.Component.type.prototype[this.props.handleScroll].bind(this.Component);
+        this._componentHandleScroll(event);
+      } else {
+        warning(false, `[scrollAware]: Returned Component instance does not have a "${this.props.handleScroll}" class method`);
+      }
     }
 
     _handleScroll(event) {
@@ -42,10 +46,8 @@ export default function(Component) {
       }
 
       this._handleScroll = this.props.throttleHandler(this._handleScroll.bind(this));
-
       this.scrollableAncestor = this.props.scrollableAncestor ||
         findScrollableAncestor(ReactDOM.findDOMNode(this));
-
       this.scrollableAncestor.addEventListener('scroll', this._handleScroll);
       window.addEventListener('resize', this._handleScroll);
 
@@ -74,7 +76,7 @@ export default function(Component) {
         this.scrollableAncestor.removeEventListener('scroll', this._handleScroll);
       window.removeEventListener('resize', this._handleScroll);
 
-      // cancel throttle function if is posible
+      // cancel throttle function if possible
       this.props.throttleHandler.cancel &&
         this.props.throttleHandler.cancel.call(this);
     }
@@ -83,9 +85,9 @@ export default function(Component) {
      * @return {Object}
      */
     render() {
-      this.Component = React.createElement(Component, { ...this.props,
-        scrollableAncestor: this.state.scrollableAncestor
-      });
+      const { scrollableAncestor, throttleHandler, handleScroll, ...props } = this.props; // eslint-disable-line no-unused-vars
+      this.Component = React.createElement(Component,
+        { ...props, scrollableAncestor: this.state.scrollableAncestor });
       return this.Component;
     }
   }
