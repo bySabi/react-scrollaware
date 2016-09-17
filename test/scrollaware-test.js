@@ -5,8 +5,8 @@ import { mount } from 'enzyme';
 import throttle from 'lodash.throttle';
 import scrollAware from '../src/scroll-aware';
 
-// 'component' mount attached to div container appended to document 'body'
-// ensure it's scrollable
+// 'component' mounted attached to div container appended to
+// document 'body' ensure it's scrollable
 const mountAttached = function(component) {
   const div = document.createElement('div');
   document.body.appendChild(div);
@@ -85,7 +85,6 @@ test('<ScrolledTest>', t => {
       let wrapper;
       // spy 'console.error' called by Facebook´s warning module
       console.error = td.function('console.error');
-
       t.test('setup', t => {
         const ScrolledTest = scrollAware(() => <span style={{fontSize: 0}} />);
         wrapper = mount(<ScrolledTest />);
@@ -96,7 +95,7 @@ test('<ScrolledTest>', t => {
         const explain = td.explain(console.error);
         t.equal(explain.callCount, 1);
         const error = explain.calls[0].args[0];
-        t.ok(!!~error.indexOf('Warning: [scrollAware]'));
+        t.ok(!!~error.indexOf('Warning: [scrollAware]')); // search 'substring'
         t.end();
       });
 
@@ -112,9 +111,7 @@ test('<ScrolledTest>', t => {
   t.test('handleScroll prop', t => {
     let wrapper;
     let ScrolledTest;
-    // spy 'console.error' called by Facebook´s warning module
     console.error = td.function('console.error');
-
     t.test('setup', t => {
       ScrolledTest = scrollAware(class extends React.Component {
         _customHandleScroll() {}
@@ -173,14 +170,11 @@ test('<ScrolledTest>', t => {
     });
 
     t.test('captured scroll event', t => {
-      // First generated event come from component move/update and is unmanaged,
-      // always occur.
+      // First generated event come from component move/update and is unmanaged, always occur.
       // Create 3 scroll events.
-      // enzyme API mount instace return 'DOM node'
+      scrollNodeTo(wrapper.instance(), 1); // enzyme API instance() return the 'DOM node'
       scrollNodeTo(wrapper.instance(), 1);
       scrollNodeTo(wrapper.instance(), 1);
-      scrollNodeTo(wrapper.instance(), 1);
-
       t.equal(td.explain(_handleScroll).callCount, 4);
       t.end();
     });
@@ -226,12 +220,9 @@ test('<ScrolledTest>', t => {
     });
 
     t.test('throttleHandler prop captured scroll event', t => {
-      // First generated event come from component move/update and is unmanaged,
-      // always occur.
+      // First generated event come from component move/update and is unmanaged, always occur.
       // Create 1 scroll events.
-      // first scroll events get ignore due throttle delay
-      scrollNodeTo(wrapper.instance(), 1);
-
+      scrollNodeTo(wrapper.instance(), 1);  // first scroll event is ignored due throttle delay
       t.equal(td.explain(_handleScroll).callCount, 1);
       t.end();
     });
@@ -265,7 +256,7 @@ test('<ScrolledTest>', t => {
       const explain = td.explain(scrollableAncestor);
       const first = explain.calls[0].args[0].scrollableAncestor;
       const second = explain.calls[1].args[0].scrollableAncestor;
-      t.equal(first, null);
+      t.equal(first, null);     // First render always pass scrollableAncestor 'null'
       t.equal(second, window);
       t.end();
     });

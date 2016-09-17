@@ -70,7 +70,6 @@ export default function(Component) {
 
       // At the time of unmounting, the scrollable ancestor might no longer
       // exist. Guarding against this prevents the following error:
-      //
       //   Cannot read property 'removeEventListener' of undefined
       this.scrollableAncestor &&
         this.scrollableAncestor.removeEventListener('scroll', this._handleScroll);
@@ -81,9 +80,8 @@ export default function(Component) {
         this.props.throttleHandler.cancel.call(this);
     }
 
-    /**
-     * @return {Object}
-     */
+    // Every wrapped component, one start, must be rendered two times cause their
+    // rendered DOM node is needed for find an scrollable ancestor container
     render() {
       const { scrollableAncestor, throttleHandler, handleScroll, ...props } = this.props; // eslint-disable-line no-unused-vars
       this.Component = React.createElement(Component,
