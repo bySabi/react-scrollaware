@@ -1,6 +1,6 @@
 ## master (unreleased)
 
-# 1.2.0
+# 1.2.1
 
 - add Test
 - improve Doc

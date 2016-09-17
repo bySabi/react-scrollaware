@@ -19,7 +19,7 @@ npm install react-scrollaware --save
 
 ### Dependencies
 * User should provide its own `React` and `React-DOM` package
-* on `Node 4` and `npm 2` package [fbjs](https://www.npmjs.com/package/fbjs) should be installed too:
+* on `npm 2` enviroments, package [fbjs](https://www.npmjs.com/package/fbjs) should be installed too:
 ```bash
 npm install fbjs --save
 ```
