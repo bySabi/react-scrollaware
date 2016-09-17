@@ -1,5 +1,10 @@
 ## master (unreleased)
 
+# 1.2.2
+
+- improve source code comments
+- update Doc
+
 # 1.2.1
 
 - add Test
