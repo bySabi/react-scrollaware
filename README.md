@@ -63,7 +63,7 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
      * you do not want the immediate scrollable ancestor or `window` to be
      * the container.
      */
-    scrollableAncestor: PropTypes.any
+    scrollableAncestor: PropTypes.any,
 
     /**
      * The `throttleHandler` prop provides a function that throttle the internal
