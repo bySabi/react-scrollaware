@@ -23,10 +23,9 @@
     "build-npm": "rimraf lib && mkdirp lib && babel src/ -d lib/",
     "lint": "eslint . --ext .js,.jsx",
     "karma": "karma start",
-    "testonly:chrome": "npm run karma",
-    "testonly": "npm run testonly:chrome",
+    "testonly": "npm run karma",
     "test": "npm run lint && npm run testonly",
-    "prepublish": "npm run build-npm"
+    "prepublish": "in-publish && npm run build-npm || not-in-publish"
   },
   "peerDependencies": {
     "react": "15.x.x",
@@ -50,11 +49,12 @@
     "webpack": "^2.1.0-beta",
     "testdouble": "1.x.x",
     "enzyme": "2.x.x",
-    "rimraf": "2.x.x",
     "fbjs": "*",
     "react": "15.x.x",
     "react-addons-test-utils": "15.x.x",
     "react-dom": "15.x.x",
+    "in-publish": "2.x.x",
+    "rimraf": "2.x.x",
     "mkdirp": "*"
    },
   "author": "bySabi Files",
