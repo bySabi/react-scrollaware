@@ -57,29 +57,29 @@ export const ScrolledMinimal = scrollAware(class extends React.Component {
 
 ## Prop types
 ```javascript
-  propTypes: {
-    /**
-     * Scrollable Ancestor - A custom ancestor is useful in cases where
-     * you do not want the immediate scrollable ancestor or `window` to be
-     * the container.
-     */
-    scrollableAncestor: PropTypes.any,
+propTypes: {
+  /**
+   * Scrollable Ancestor - A custom ancestor is useful in cases where
+   * you do not want the immediate scrollable ancestor or `window` to be
+   * the container.
+   */
+  scrollableAncestor: PropTypes.any,
 
-    /**
-     * The `throttleHandler` prop provides a function that throttle the internal
-     * scroll handler to increase performance.
-     * See the section on "Throttling" for details on how to use it.
-     */
-    throttleHandler: PropTypes.func,
+  /**
+   * The `throttleHandler` prop provides a function that throttle the internal
+   * scroll handler to increase performance.
+   * See the section on "Throttling" for details on how to use it.
+   */
+  throttleHandler: PropTypes.func,
 
-    /**
-     * react-scrollaware by default callback '_handleScroll' class method of wrapped
-     * component wherever a 'scroll' or 'resize' event occur.
-     * The `handleScroll` prop provides a different class method name to
-     * wrapped component event handler.
-     */
-    handleScroll: PropTypes.string
-  }
+  /**
+   * react-scrollaware by default callback '_handleScroll' class method of wrapped
+   * component wherever a 'scroll' or 'resize' event occur.
+   * The `handleScroll` prop provides a different class method name to
+   * wrapped component event handler.
+   */
+  handleScroll: PropTypes.string
+}
 ```
 
 ## Containing elements and `scrollableAncestor`
