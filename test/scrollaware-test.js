@@ -115,28 +115,27 @@ test('<ScrolledTest>', t => {
     t.end();
   });
 
-  t.test('never called handleScroll', t => {
+  t.test('never called _handleScroll', t => {
     let wrapper;
     let ScrolledTest;
-    let _customHandleScroll;
+    let _handleScroll;
     t.test('setup', t => {
-      _customHandleScroll = td.function('_customHandleScroll');
+      _handleScroll = td.function('_handleScroll');
       ScrolledTest = scrollAware(class extends React.Component {
-        _customHandleScroll(event) {
-          _customHandleScroll(event);
+        _handleScroll(event) {
+          _handleScroll(event);
         }
         render() {
           return <span style={{fontSize: 0}} />;
         }
       });
-      wrapper = mount(<ScrolledTest />);
+      wrapper = mount(<ScrolledTest handleScroll="_customHandleScroll" />);
       t.end();
     });
 
-    t.test('never called handleScroll', t => {
-      const explain = td.explain(_customHandleScroll);
-      // default _handleScroll class method is not set
-      // _customHandleScroll must be pass it in prop 'handleScroll'
+    t.test('never called _handleScroll', t => {
+      const explain = td.explain(_handleScroll);
+      // default _handleScroll prop class method is overrided
       t.equal(explain.callCount, 0);
       t.end();
     });
@@ -168,7 +167,7 @@ test('<ScrolledTest>', t => {
         overflow: 'auto',
         position: 'relative',
         width: 100,
-        margin: 10  // Normalize the space above the viewport.
+        margin: 10  // Normalize the space above the viewport
       }
       wrapper = mountAttached(
         <div style={parentStyle}>
