@@ -1,5 +1,9 @@
 ## master (unreleased)
 
+# 1.2.4
+
+- refactored test files
+
 # 1.2.2
 
 - improve source code comments

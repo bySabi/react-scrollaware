@@ -31,9 +31,8 @@ export default function(Component) {
       if (this.Component.type.prototype[this.props.handleScroll]) {
         this._componentHandleScroll = this.Component.type.prototype[this.props.handleScroll].bind(this.Component);
         this._componentHandleScroll(event);
-      } else {
-        warning(false, `[scrollAware]: Returned Component instance does not have a "${this.props.handleScroll}" class method`);
       }
+      warning(this.Component.type.prototype[this.props.handleScroll], `[scrollAware]: Returned Component instance does not have a "${this.props.handleScroll}" class method`);
     }
 
     _handleScroll(event) {

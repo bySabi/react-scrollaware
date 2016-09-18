@@ -80,51 +80,63 @@ test('<ScrolledTest>', t => {
       });
       t.end();
     });
-
-    t.test('throwed warning', t => {
-      let wrapper;
-      // spy 'console.error' called by Facebook´s warning module
-      console.error = td.function('console.error');
-      t.test('setup', t => {
-        const ScrolledTest = scrollAware(() => <span style={{fontSize: 0}} />);
-        wrapper = mount(<ScrolledTest />);
-        t.end();
-      });
-
-      t.test('throwed warning', t => {
-        const explain = td.explain(console.error);
-        t.equal(explain.callCount, 1);
-        const error = explain.calls[0].args[0];
-        t.ok(!!~error.indexOf('Warning: [scrollAware]')); // search 'substring'
-        t.end();
-      });
-
-      t.test('tearDown', t => {
-        wrapper.unmount();
-        td.reset();
-        t.end();
-      });
-      t.end();
-    });
   });
 
   t.test('handleScroll prop', t => {
     let wrapper;
     let ScrolledTest;
-    console.error = td.function('console.error');
+    let _customHandleScroll;
     t.test('setup', t => {
+      _customHandleScroll = td.function('_customHandleScroll');
       ScrolledTest = scrollAware(class extends React.Component {
-        _customHandleScroll() {}
+        _customHandleScroll(event) {
+          _customHandleScroll(event);
+        }
         render() {
           return <span style={{fontSize: 0}} />;
         }
       });
+      wrapper = mount(<ScrolledTest handleScroll="_customHandleScroll" />);
       t.end();
     });
 
     t.test('handleScroll prop', t => {
-      wrapper = mount(<ScrolledTest handleScroll='_customHandleScroll' />);
-      const explain = td.explain(console.error);
+      const explain = td.explain(_customHandleScroll);
+      // First generated event come from component move/update and is unmanaged, always occur.
+      t.equal(explain.callCount, 1);
+      t.end();
+    });
+
+    t.test('tearDown', t => {
+      wrapper.unmount();
+      td.reset();
+      t.end();
+    });
+    t.end();
+  });
+
+  t.test('never called handleScroll', t => {
+    let wrapper;
+    let ScrolledTest;
+    let _customHandleScroll;
+    t.test('setup', t => {
+      _customHandleScroll = td.function('_customHandleScroll');
+      ScrolledTest = scrollAware(class extends React.Component {
+        _customHandleScroll(event) {
+          _customHandleScroll(event);
+        }
+        render() {
+          return <span style={{fontSize: 0}} />;
+        }
+      });
+      wrapper = mount(<ScrolledTest />);
+      t.end();
+    });
+
+    t.test('never called handleScroll', t => {
+      const explain = td.explain(_customHandleScroll);
+      // default _handleScroll class method is not set
+      // _customHandleScroll must be pass it in prop 'handleScroll'
       t.equal(explain.callCount, 0);
       t.end();
     });
@@ -146,7 +158,6 @@ test('<ScrolledTest>', t => {
         _handleScroll(event) {
           _handleScroll(event);
         }
-
         render() {
           return <span style={{fontSize: 0}} />;
         }
@@ -268,6 +279,5 @@ test('<ScrolledTest>', t => {
     });
     t.end();
   });
-
   t.end();
 });
