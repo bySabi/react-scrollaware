@@ -26,60 +26,58 @@ const scrollNodeTo = function(node, scrollTop) {
 };
 
 test('<ScrolledTest>', t => {
-  t.test('wrapped component', t => {
+  t.test('rendered html', t => {
+    let wrapper;
+    t.test('setup', t => {
+      const ScrolledTest = scrollAware(class extends React.Component {
+        _handleScroll() {}
+        render() {
+          return <span style={{fontSize: 0}} />;
+        }
+      });
+      wrapper = mount(<ScrolledTest />);
+      t.end();
+    });
+
     t.test('rendered html', t => {
-      let wrapper;
-      t.test('setup', t => {
-        const ScrolledTest = scrollAware(class extends React.Component {
-          _handleScroll() {}
-          render() {
-            return <span style={{fontSize: 0}} />;
-          }
-        });
-        wrapper = mount(<ScrolledTest />);
-        t.end();
-      });
+      t.equal(wrapper.html(), '<span style="font-size: 0px;"></span>');
+      t.end();
+    });
 
-      t.test('rendered html', t => {
-        t.equal(wrapper.html(), '<span style="font-size: 0px;"></span>');
-        t.end();
-      });
+    t.test('tearDown', t => {
+      wrapper.unmount();
+      t.end();
+    });
+    t.end();
+  });
 
-      t.test('tearDown', t => {
-        wrapper.unmount();
-        t.end();
+  t.test('wrapped rendered 2 times', t => {
+    let wrapper;
+    let _render;
+    t.test('setup', t => {
+      _render = td.function('_render');
+      const ScrolledTest = scrollAware(class extends React.Component {
+        _handleScroll() {}
+        render() {
+          _render();
+          return <span style={{fontSize: 0}} />;
+        }
       });
+      wrapper = mount(<ScrolledTest />);
       t.end();
     });
 
     t.test('wrapped rendered 2 times', t => {
-      let wrapper;
-      let _render;
-      t.test('setup', t => {
-        _render = td.function('_render');
-        const ScrolledTest = scrollAware(class extends React.Component {
-          _handleScroll() {}
-          render() {
-            _render();
-            return <span style={{fontSize: 0}} />;
-          }
-        });
-        wrapper = mount(<ScrolledTest />);
-        t.end();
-      });
-
-      t.test('wrapped rendered 2 times', t => {
-        t.equal(td.explain(_render).callCount, 2);
-        t.end();
-      });
-
-      t.test('tearDown', t => {
-        wrapper.unmount();
-        td.reset();
-        t.end();
-      });
+      t.equal(td.explain(_render).callCount, 2);
       t.end();
     });
+
+    t.test('tearDown', t => {
+      wrapper.unmount();
+      td.reset();
+      t.end();
+    });
+    t.end();
   });
 
   t.test('handleScroll prop', t => {
@@ -104,39 +102,6 @@ test('<ScrolledTest>', t => {
       const explain = td.explain(_customHandleScroll);
       // First generated event come from component move/update and is unmanaged, always occur.
       t.equal(explain.callCount, 1);
-      t.end();
-    });
-
-    t.test('tearDown', t => {
-      wrapper.unmount();
-      td.reset();
-      t.end();
-    });
-    t.end();
-  });
-
-  t.test('never called _handleScroll', t => {
-    let wrapper;
-    let ScrolledTest;
-    let _handleScroll;
-    t.test('setup', t => {
-      _handleScroll = td.function('_handleScroll');
-      ScrolledTest = scrollAware(class extends React.Component {
-        _handleScroll(event) {
-          _handleScroll(event);
-        }
-        render() {
-          return <span style={{fontSize: 0}} />;
-        }
-      });
-      wrapper = mount(<ScrolledTest handleScroll="_customHandleScroll" />);
-      t.end();
-    });
-
-    t.test('never called _handleScroll', t => {
-      const explain = td.explain(_handleScroll);
-      // default _handleScroll prop class method is overrided
-      t.equal(explain.callCount, 0);
       t.end();
     });
 
