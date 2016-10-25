@@ -3,7 +3,8 @@
 [![npm version](https://badge.fury.io/js/react-scrollaware.svg)](https://badge.fury.io/js/react-scrollaware)
 [![npm downloads](https://img.shields.io/npm/dm/react-scrollaware.svg?style=flat-square)](https://www.npmjs.com/package/react-scrollaware)
 [![Build Status](https://travis-ci.org/bySabi/react-scrollaware.svg?branch=master)](https://travis-ci.org/bySabi/react-scrollaware)
-[![Known Vulnerabilities](https://snyk.io/test/github/bysabi/react-scrollaware/badge.svg)](https://snyk.io/test/github/bysabi/react-scrollaware)
+[![bitHound Overall Score](https://www.bithound.io/github/bySabi/react-scrollaware/badges/score.svg)](https://www.bithound.io/github/bySabi/react-scrollaware)
+[![Donate](https://img.shields.io/badge/$-support-green.svg?style=flat-square)](https://paypal.me/bySabi/10)
 
 A React Higher-order Component for create `scroll-aware` wrapped components. Works in all containers that can scroll, including the `window`
 
